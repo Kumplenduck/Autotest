@@ -1,3 +1,20 @@
-Путь к основному классу: Autotesting/src/main/scala/Autotest.scala 
-Путь к классу с загрузкой: sample Autotesting/src/main/scala/LoadSample.scala
-Путь к тестовым файлам: Autotesting/src/main/resources
+--**Autotest framework**--
+Проект для проверки витрин на ошибки
+## **Основные части проекта**
+https://github.com/Kumplenduck/Autotest/blob/main/src/main/scala/Autotest.scala - главный класс с выполнением тестов витрин
+https://github.com/Kumplenduck/Autotest/blob/main/src/main/scala/LoadSample.scala - класс для загрузки сэмплов на hive
+https://github.com/Kumplenduck/Autotest/tree/main/src/main/resources - папка с тестовыми файлами
+# Тесты :
+Тестирование производится для четырех типов:
+- подсчет '*counts*' ; 
+- атрибуты '*arrays*';
+- структура - '*ddl*';
+- своответствие константам - '*constants*'.
+### Тестирование количества строк
+Происходит сравнение после выполнения двух SQL-запросов, которые выводят число строк.
+### Тестирование атрибутов 
+Происходит сравнение таблиц по атрибутам после выполненных SQL-запросов
+### Тестирование структуры данных
+Происходит сравнение исходных данных с результатом SQL-запроса с описанием таблицы(**describe**)
+### Тестирование на соответствие константам
+Происходит сравнение исходных данных с выполненным SQL-запросом
