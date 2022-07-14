@@ -1,9 +1,9 @@
 --**Autotest framework**--
 Проект для проверки витрин на ошибки
 ## **Основные части проекта**
-https://github.com/Kumplenduck/Autotest/blob/main/src/main/scala/Autotest.scala - главный класс с выполнением тестов витрин
-https://github.com/Kumplenduck/Autotest/blob/main/src/main/scala/LoadSample.scala - класс для загрузки сэмплов на hive
-https://github.com/Kumplenduck/Autotest/tree/main/src/main/resources - папка с тестовыми файлами
+https://github.com/Kumplenduck/Autotest/blob/main/src/main/scala/Autotest.scala - главный класс с выполнением тестов витрин.
+https://github.com/Kumplenduck/Autotest/blob/main/src/main/scala/LoadSample.scala - класс для загрузки сэмплов на hive.
+https://github.com/Kumplenduck/Autotest/tree/main/src/main/resources - папка с тестовыми файлами.
 # Тесты :
 Тестирование производится для четырех типов:
 - подсчет '*counts*' ; 
