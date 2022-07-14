@@ -7,7 +7,6 @@ import scala.collection.mutable.ListBuffer
 object Autotest extends App {
   val spark = SparkSession.builder()
     .master("yarn")
-    //        .master("local[4]")
     .appName("Test")
     .enableHiveSupport()
     .config("hive.metastore.uris", "thrift://dn01:9083")
@@ -22,10 +21,13 @@ object Autotest extends App {
   val source = "source"
   val target = "target"
 
-  //получение списков с путями в директории src/main/resources
-
+  //ListBuffer для OneBank и PerDay
+  
   var pathListBufferOneBank = new ListBuffer[String]
   var pathListBufferPerDay = new ListBuffer[String]
+  
+  //получение списков с путями в директории src/main/resources
+  
   val jarFile = new File(getClass.getProtectionDomain.getCodeSource.getLocation.getPath)
   if (jarFile.isFile) {
     val jar = new JarFile(jarFile)
@@ -43,7 +45,9 @@ object Autotest extends App {
     }
     jar.close()
   }
-
+  
+  // списки для метода getPaths() по двум видам OneBank и PerDay
+  
   val pathListOneBank = pathListBufferOneBank.toList
   val counts_list_OneBank = pathListOneBank.filter(x => x.contains("counts"))
   val arrays_list_OneBank = pathListOneBank.filter(x => x.contains("arrays"))
@@ -108,7 +112,7 @@ object Autotest extends App {
 
   chekConstants(number_Test2, constants_list_PerDay)
 
-  //методы
+  //методы для сравнеия витрин и источников
 
   def chekConstants(testName: String, listName: List[String]): Unit = {
     val list_source = readSql(spark, getPaths(testName, source, listName))
@@ -194,7 +198,8 @@ object Autotest extends App {
     }
   }
 
-
+  // метод для поиска пути к тесту по номеру теста, типу(source илии target) и определенному списку  
+  
   def getPaths(numberTest: String, nameRec: String, pathList: List[String]): String = {
     var pathName = ""
     pathList.foreach(path => {
@@ -207,11 +212,15 @@ object Autotest extends App {
     pathName
   }
 
+  // метод для получения таблицы из sql-запроса в тестовом фале
+  
   def readSql(spark: SparkSession, filePath: String): DataFrame = {
     spark.sql(scala.io.Source.fromInputStream(getClass.getResourceAsStream(filePath))
       .getLines().mkString(""))
   }
 
+  // метод для прочтения данных из теста и запись в список
+  
   def readString(filePath: String): List[String] = {
     scala.io.Source.fromInputStream(getClass.getResourceAsStream(filePath))
       .getLines().mkString("|")
