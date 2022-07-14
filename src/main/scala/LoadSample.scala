@@ -5,7 +5,6 @@ import org.apache.spark.sql.types.{DecimalType, IntegerType, LongType, StringTyp
 object LoadSample extends App {
   val spark = SparkSession.builder()
     .master("yarn")
-    //    .master("local[4]")
     .appName("LoadSample")
     .enableHiveSupport()
     .config("hive.metastore.uris", "thrift://dn01:9083")
