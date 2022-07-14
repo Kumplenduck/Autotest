@@ -1,4 +1,4 @@
---**Autotest framework**--
+##**Autotest framework**
 Проект для проверки витрин на ошибки
 ## **Основные части проекта**
 https://github.com/Kumplenduck/Autotest/blob/main/src/main/scala/Autotest.scala - главный класс с выполнением тестов витрин.
